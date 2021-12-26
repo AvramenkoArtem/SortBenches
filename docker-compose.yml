@@ -1,0 +1,13 @@
+version: '3'
+volumes:
+  go-modules:
+    driver: local
+services:
+  app:
+    tty: true
+    stdin_open: true
+    image: golang:1.13
+    volumes:
+      - .:/app
+      - go-modules:/go/pkg/mod
+    working_dir: /app
