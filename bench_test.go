@@ -2,6 +2,8 @@ package main
  
 import (
 	"testing"
+	"github.com/psilva261/timsort/v2"
+	"sort"
 )
  
 var sample = []int{1, 2, 5, -3, 0, 4, -101, 21, 55, -3, 0, 4, 10, 2, 5, -3, 0, 4, 1, 2, 5, -30, 0, 4, 1, 20, 5, -3, 0, 4, 1, 2, 5, -3, 0, 4, 1, 2, 5, -3, 0, 4, 1, 2, 5, -3, 10, 4, 1, 2, 5, -3, 0, 4, 1, 2, -5, -3, 0, 9, 1, 2, 5, -3, 8, 4, 1, 2, 5, -3, 0, 4, 1, 2, 5, -3, 0, 4}
@@ -58,6 +60,15 @@ func BenchmarkTreeSort(b *testing.B) {
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
 		_ = treesort(sample)
+	}
+	b.StopTimer()
+}
+
+// Library Timsort Benchs
+func BenchmarkTimSort(b *testing.B) {
+	b.ResetTimer()
+	for n := 0; n < b.N; n++ {
+		timsort.TimSort(sort.IntSlice(sample))
 	}
 	b.StopTimer()
 }
